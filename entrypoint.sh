@@ -20,11 +20,11 @@ echo "jmeter args=$@"
 export TEST_DIR="/tests"
 export OUTPUT_DIR=`date +"%Y%m%d%H%M%S"`
 
-mkdir ${OUTPUT_DIR}
 # Keep entrypoint simple: we must pass the standard JMeter arguments
 for i in ${TEST_DIR}/*.jmx
 do
   jmeter -n -t $i -l ${TEST_DIR}/${OUTPUT_DIR}/$i.jtl -j ${TEST_DIR}/${OUTPUT_DIR}/jmeter.log $@
 done
 
+chmod -R 777 ${TEST_DIR}/${OUTPUT_DIR}
 echo "END Running Jmeter on `date`"
