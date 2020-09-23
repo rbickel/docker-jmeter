@@ -16,7 +16,7 @@ RUN    apk update \
 	&& apk upgrade \
 	&& apk add ca-certificates \
 	&& update-ca-certificates \
-	&& apk add --update openjdk8-jre tzdata curl unzip bash \
+	&& apk add --update openjdk8-jre tzdata curl unzip bash libxslt \
 	&& apk add --no-cache nss \
 	&& rm -rf /var/cache/apk/* \
 	&& mkdir -p /tmp/dependencies  \
@@ -35,6 +35,7 @@ ENV PATH $PATH:$JMETER_BIN
 
 # Entrypoint has same signature as "jmeter" command
 COPY entrypoint.sh /
+COPY junit.xsl /
 COPY tests/** /tests/
 
 WORKDIR	${JMETER_HOME}
