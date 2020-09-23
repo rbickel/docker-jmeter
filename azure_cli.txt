@@ -1,0 +1,9 @@
+az container create `
+    --resource-group temp `
+    --name rbkljmeter2 `
+    --image rbickel/jmeter:latest `
+    --azure-file-volume-account-name rbkljmeter `
+    --azure-file-volume-account-key kR/cg2Bqdr2qkGm/4jgV70iBtu9xO0K151cn/xoIHImPWm35NWnoy7AgGyjZLg== `
+    --azure-file-volume-share-name jmeter `
+    --azure-file-volume-mount-path /tests `
+    --restart-policy Never

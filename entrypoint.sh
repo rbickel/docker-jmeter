@@ -4,6 +4,8 @@
 #
 # This script expects the standdard JMeter command parameters.
 #
+echo "entrypoint.sh"
+
 set -e
 freeMem=`awk '/MemFree/ { print int($2/1024) }' /proc/meminfo`
 s=$(($freeMem/10*8))
@@ -15,14 +17,14 @@ echo "START Running Jmeter on `date`"
 echo "JVM_ARGS=${JVM_ARGS}"
 echo "jmeter args=$@"
 
-# Keep entrypoint simple: we must pass the standard JMeter arguments
-jmeter $@
-echo "END Running Jmeter on `date`"
+export TEST_DIR="/tests"
+export OUTPUT_DIR=`date +"%Y%m%d%H%M%S"`
 
-#     -n \
-#    -t "/tests/${TEST_DIR}/${TEST_PLAN}.jmx" \
-#    -l "/tests/${TEST_DIR}/${TEST_PLAN}.jtl"
-# exec tail -f jmeter.log
-#    -D "java.rmi.server.hostname=${IP}" \
-#    -D "client.rmi.localport=${RMI_PORT}" \
-#  -R $REMOTE_HOSTS
+mkdir ${OUTPUT_DIR}
+# Keep entrypoint simple: we must pass the standard JMeter arguments
+for i in ${TEST_DIR}/*.jmx
+do
+  jmeter -n -t $i -l ${TEST_DIR}/${OUTPUT_DIR}/$i.jtl -j ${TEST_DIR}/${OUTPUT_DIR}/jmeter.log
+done
+
+echo "END Running Jmeter on `date`"
