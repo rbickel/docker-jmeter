@@ -24,7 +24,7 @@ mkdir ${OUTPUT_DIR}
 # Keep entrypoint simple: we must pass the standard JMeter arguments
 for i in ${TEST_DIR}/*.jmx
 do
-  jmeter -n -t $i -l ${TEST_DIR}/${OUTPUT_DIR}/$i.jtl -j ${TEST_DIR}/${OUTPUT_DIR}/jmeter.log
+  jmeter -n -t $i -l ${TEST_DIR}/${OUTPUT_DIR}/$i.jtl -j ${TEST_DIR}/${OUTPUT_DIR}/jmeter.log $@
 done
 
 echo "END Running Jmeter on `date`"

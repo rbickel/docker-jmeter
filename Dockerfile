@@ -6,7 +6,7 @@ ARG JMETER_VERSION="5.3"
 ENV JMETER_HOME /opt/apache-jmeter-${JMETER_VERSION}
 ENV	JMETER_BIN	${JMETER_HOME}/bin
 ENV	JMETER_DOWNLOAD_URL  https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-${JMETER_VERSION}.tgz
-ENV APPINSIGHT_PLUGIN_URL https://github.com/adrianmo/jmeter-backend-azure/releases/download/0.2.3/jmeter.backendlistener.azure-0.2.3.jar
+ENV APPINSIGHT_PLUGIN_URL https://github.com/rbickel/jmeter-backend-azure/releases/download/0.2/jmeter.backendlistener.azure-0.2.3.jar
 
 # Install extra packages
 # See https://github.com/gliderlabs/docker-alpine/issues/136#issuecomment-272703023

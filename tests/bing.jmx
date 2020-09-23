@@ -7,7 +7,23 @@
       <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
       <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-        <collectionProp name="Arguments.arguments"/>
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="NbrThreads" elementType="Argument">
+            <stringProp name="Argument.name">NbrThreads</stringProp>
+            <stringProp name="Argument.value">${__P(NbrThreads)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="ApplicationInsightInstrumentationKey" elementType="Argument">
+            <stringProp name="Argument.name">ApplicationInsightInstrumentationKey</stringProp>
+            <stringProp name="Argument.value">${__P(AppInsightTestName)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="AppInsightTestName" elementType="Argument">
+            <stringProp name="Argument.name">AppInsightTestName</stringProp>
+            <stringProp name="Argument.value">${__P(AppInsightTestName)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
       </elementProp>
       <stringProp name="TestPlan.user_define_classpath"></stringProp>
     </TestPlan>
@@ -17,12 +33,12 @@
           <collectionProp name="Arguments.arguments">
             <elementProp name="testName" elementType="Argument">
               <stringProp name="Argument.name">testName</stringProp>
-              <stringProp name="Argument.value">jmeter</stringProp>
+              <stringProp name="Argument.value">${AppInsightTestName}</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="instrumentationKey" elementType="Argument">
               <stringProp name="Argument.name">instrumentationKey</stringProp>
-              <stringProp name="Argument.value">5c9c2c60-538c-4e16-8e52-4fb471db588a</stringProp>
+              <stringProp name="Argument.value">${ApplicationInsightInstrumentationKey}</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="liveMetrics" elementType="Argument">
@@ -51,8 +67,8 @@
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">1</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <stringProp name="ThreadGroup.num_threads">${NbrThreads}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">60</stringProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
         <stringProp name="ThreadGroup.duration"></stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
@@ -89,7 +105,7 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">www.googlesdafdsasdfdffsdfds.com</stringProp>
+          <stringProp name="HTTPSampler.domain">www.unvalidbing.com</stringProp>
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
